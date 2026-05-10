@@ -1,0 +1,281 @@
+/* style.css */
+/* Dark themed, premium look */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #050505;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+}
+
+/* Splash overlay and header */
+#splash-bg {
+  position: fixed;
+  inset: 0;
+  background-color: #050505;
+  z-index: 1000;
+  transition: opacity 1s ease;
+}
+
+#header-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4rem;
+  background: transparent;
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+#splash-title {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: lowercase;
+  letter-spacing: 0.2rem;
+  color: transparent;
+  -webkit-text-stroke: 2px #ffffff;
+  z-index: 1001;
+  transition: all 1s cubic-bezier(0.68, -0.2, 0.265, 1.25);
+  pointer-events: none;
+}
+
+#splash-title.step-fill {
+  color: #ffffff;
+}
+
+#splash-title.step-header {
+  top: 1rem;
+  transform: translate(-50%, 0);
+  font-size: 2rem;
+  -webkit-text-stroke: 0px transparent;
+}
+@property --bg-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #9c88ff;
+}
+
+:root {
+  --bg-color: #9c88ff;
+}
+
+html {
+  transition: --bg-color 1.5s ease-in-out;
+}
+
+body {
+  background-color: #050505;
+  color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+#custom-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #050505;
+  overflow: hidden;
+  filter: blur(80px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--bg-color) 0%, transparent 65%);
+  opacity: 0.6;
+  pointer-events: none;
+  /* Removed background transition because we are transitioning the custom property instead */
+}
+
+.ambient {
+  width: 60vw;
+  height: 60vw;
+}
+
+#blob-1 { animation: float1 1.8s infinite alternate ease-in-out; top: -10%; left: -10%; }
+#blob-2 { animation: float2 2.2s infinite alternate ease-in-out; top: 40%; left: 60%; }
+#blob-3 { animation: float3 2.5s infinite alternate ease-in-out; top: 60%; left: -20%; }
+#blob-4 { animation: float1 2.0s infinite alternate-reverse ease-in-out; top: 10%; left: 70%; }
+#blob-5 { animation: float2 1.9s infinite alternate-reverse ease-in-out; top: 80%; left: 30%; }
+
+#blob-mouse {
+  width: 40vw;
+  height: 40vw;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  /* Managed by JS */
+}
+
+@keyframes float1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20vw, 15vh) scale(1.1); }
+  100% { transform: translate(10vw, -10vh) scale(0.9); }
+}
+@keyframes float2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-15vw, 20vh) scale(1.2); }
+  100% { transform: translate(-25vw, -5vh) scale(0.95); }
+}
+@keyframes float3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25vw, -15vh) scale(1.05); }
+  100% { transform: translate(-10vw, 10vh) scale(1.1); }
+}
+
+/* Page sections */
+.page {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Layout for Raspberry Pi page */
+#raspberry .row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+#raspberry .icon img {
+  width: 200px;
+  height: auto;
+}
+#raspberry .text {
+  flex: 1;
+}
+
+/* Content styling */
+.content {
+  background: rgba(15, 15, 15, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 800px;
+  width: 100%;
+}
+.content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff; 
+  transition: all 0.3s ease;
+  -webkit-text-stroke: 0px transparent;
+}
+.content h2:hover {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--bg-color);
+}
+.content p, .content li {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #cccccc;
+  margin-bottom: 1rem;
+}
+.content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.content li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.content svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Instagram link */
+.insta-link {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.insta-link .insta-icon {
+  width: 64px;
+  height: 64px;
+  fill: #fff;
+  transition: transform 0.3s ease;
+}
+.insta-link:hover {
+  transform: scale(1.2);
+}
+.insta-link::after {
+  content: "@verycalmdude";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #000000;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.insta-link:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* Smooth scroll and snap */
+/* Handled in html block above */
+
+/* Optional: add subtle glassmorphism to sections */
+.page {
+  /* removed default background to rely on .content */
+  margin: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #raspberry .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  #raspberry .icon svg {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.hover-word {
+  border-radius: 3px;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  cursor: default;
+  display: inline-block;
+}
+
+.hover-word:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
